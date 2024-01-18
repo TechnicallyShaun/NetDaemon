@@ -23,10 +23,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -c release
     - name: Test
       run: dotnet test --no-build --verbosity normal
-
+    - name: Publish
+      run: dotnet publish -c release
+      
   release:
     name: Release pushed tag
     runs-on: ubuntu-22.04
