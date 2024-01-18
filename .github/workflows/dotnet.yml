@@ -46,4 +46,4 @@ jobs:
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
         ls -al
         echo ${{ BUILD_VERSION }}
-        gh release create 6 '/home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0'
+        gh release create ${{ BUILD_VERSION }} '/home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0'
