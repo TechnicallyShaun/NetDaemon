@@ -44,7 +44,7 @@ jobs:
     - name: Zip Folder
       run: |
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
-        zip -r test.zip ./publish -x
+        zip -r test.zip ./publish
         ls -al
         ls / -al
 
