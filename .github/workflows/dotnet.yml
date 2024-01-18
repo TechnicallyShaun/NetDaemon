@@ -21,14 +21,17 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Get Build Version
+    - name: Git Version
+      id: version
+      uses: codacy/git-version@2.7.1
+    
+    - name: Use the version
       run: |
-        Import-Module .\.github\workflows\GetBuildVersion.psm1
-        Write-Host $Env:GITHUB_REF
-        $version = GetBuildVersion -VersionString $Env:GITHUB_REF
-        echo "BUILD_VERSION=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-        echo $version
-      shell: pwsh
+        echo ${{ steps.version.outputs.version }}
+    - name: Use the previous version
+      run: |
+        echo ${{ steps.version.outputs.previous-version }}
+          
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -38,13 +41,8 @@ jobs:
     - name: Publish
       run: dotnet publish -c release 
 
-    - name: Create release
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${{ github.ref_name }}
-      run: |
-        cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
-        ls -al
-        ls -p
-        echo $BUILD_VERSION
-        ls -p | gh release create 1.1.1
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dotnet-results-${{ matrix.dotnet-version }}
+        path: TestResults-${{ matrix.dotnet-version }}
