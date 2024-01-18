@@ -43,8 +43,8 @@ jobs:
 
     - name: Zip Folder
       run: |
-        cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0
-        zip -r ./publish.zip ./publish
+        cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
+        zip -r ./publish.zip ./*
 
     - name: Release
       uses: softprops/action-gh-release@v1
