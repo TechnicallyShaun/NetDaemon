@@ -35,4 +35,4 @@ jobs:
         tag: ${{ github.ref_name }}
       run: |
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
-        gh release create
+        gh release create "4"
