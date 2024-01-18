@@ -41,6 +41,13 @@ jobs:
     - name: Publish
       run: dotnet publish -c release 
 
+    - name: Zip Folder
+      run: |
+        cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
+        zip -r test.zip ./publish -x
+        ls -al
+        ls / -al
+
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
