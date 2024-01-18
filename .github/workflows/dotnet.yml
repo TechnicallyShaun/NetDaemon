@@ -41,8 +41,7 @@ jobs:
     - name: Publish
       run: dotnet publish -c release 
 
-    - name: Upload dotnet test results
-      uses: actions/upload-artifact@v3
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: ${{ steps.version.outputs.version }}
-        path: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
+        files: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/NetDaemon.dll
