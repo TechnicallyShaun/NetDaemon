@@ -46,7 +46,7 @@ jobs:
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
         ls -al
         echo $BUILD_VERSION
-        git archive
+        git archive ./
         ls -al
         
         gh release create $BUILD_VERSION '/home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/'
