@@ -47,4 +47,4 @@ jobs:
         ls -al
         ls -p
         echo $BUILD_VERSION
-        ls -p | gh release create $BUILD_VERSION
+        ls -p | gh release create 1.1.1
