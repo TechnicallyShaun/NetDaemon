@@ -27,18 +27,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish -c release
-      
-  release:
-    name: Release pushed tag
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
-        run: |
-          gh release create "${{ github.ref_name }}1" \
-              --repo="$GITHUB_REPOSITORY" \
-              --title="${GITHUB_REPOSITORY#*/}" \
-              --generate-notes
+      run: dotnet publish -c release 
+
+    - name: Create release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.ref_name }}
+      run: |
+        gh release create "${{ github.ref_name }}${{ github.event.release.tag_name }}" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="${GITHUB_REPOSITORY#*/}" \
+            --generate-notes
