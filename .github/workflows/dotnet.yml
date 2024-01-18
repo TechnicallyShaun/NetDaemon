@@ -44,5 +44,5 @@ jobs:
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
-        name: dotnet-results-${{ matrix.dotnet-version }}
-        path: TestResults-${{ matrix.dotnet-version }}
+        name: ${{ steps.version.outputs.version }}
+        path: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
