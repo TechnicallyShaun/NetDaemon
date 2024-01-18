@@ -35,7 +35,4 @@ jobs:
         tag: ${{ github.ref_name }}
       run: |
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
-        gh release create "${{ github.ref_name }}3" \
-            --repo="$GITHUB_REPOSITORY" \
-            --title="${GITHUB_REPOSITORY#*/}" \
-            --generate-notes
+        gh release create
