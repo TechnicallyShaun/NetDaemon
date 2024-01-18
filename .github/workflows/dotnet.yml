@@ -35,4 +35,6 @@ jobs:
         tag: ${{ github.ref_name }}
       run: |
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/
-        gh release create 5 '/home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/#My display label'
+        ls -al
+        
+        gh release create 5 '/home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/*#My display label'
