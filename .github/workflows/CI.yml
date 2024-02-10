@@ -39,7 +39,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: dotnet-publish-files
-        path: $PUBLISH_DIRECTORY
+        path: |
+          $PUBLISH_DIRECTORY
 
   # publish:
   #   runs-on: ubuntu-latest
