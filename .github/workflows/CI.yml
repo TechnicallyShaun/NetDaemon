@@ -29,12 +29,12 @@ jobs:
       run: dotnet test --no-build --verbosity normal    
     - name: Publish
       run: dotnet publish -c release
-    # - name: Print File/Folder Tree
-    #   run: |
-    #     echo ---- Working Directory -----
-    #     tree -d ./
-    #     echo ---- Publish Directory -----
-    #     tree $PUBLISH_DIRECTORY
+    - name: Print File/Folder Tree
+      run: |
+        echo ---- Working Directory -----
+        tree -d ./
+        echo ---- Publish Directory -----
+        tree $PUBLISH_DIRECTORY
     - name: Archive Build Files
       uses: actions/upload-artifact@v4
       with:
