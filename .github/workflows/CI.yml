@@ -27,7 +27,9 @@ jobs:
       run: dotnet publish -c release
     - name: Zip Folder
       run: |
+        echo ---- ./ - stuff - below -----
         ls ./
+        echo ---- / - stuff - below -----
         ls /
         echo ---- Tree - stuff - below -----
         tree -d ./
