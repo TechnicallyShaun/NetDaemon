@@ -14,21 +14,22 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-    - name: Git Version
-      id: version
-      uses: codacy/git-version@2.7.1    
+    # - name: Git Version
+    #   id: version
+    #   uses: codacy/git-version@2.7.1    
     - name: Restore dependencies
       run: dotnet restore  
     - name: Test
       run: dotnet test --no-build --verbosity normal    
     - name: Publish
       run: dotnet publish -c release
-    - name: Display File/Folder Tree
+    - name: Print File/Folder Tree
       run: |
         echo ---- Working Directory -----
         tree -d ./
