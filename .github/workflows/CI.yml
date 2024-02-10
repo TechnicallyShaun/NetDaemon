@@ -40,7 +40,7 @@ jobs:
       with:
         name: dotnet-publish-files
         path: |
-          ${{ vars.PUBLISH_DIRECTORY}}
+          ${PUBLISH_DIRECTORY}
 
   # publish:
   #   runs-on: ubuntu-latest
