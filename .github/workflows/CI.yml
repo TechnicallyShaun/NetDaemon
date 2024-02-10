@@ -55,7 +55,7 @@ jobs:
         echo ---- Working Directory Folder Tree -----
         tree -d ./
         echo ---- Publish Directory Files -----
-        tree $PUBLISH_DIRECTORY
+        tree ./
 
     # - name: Zip Folder
     #   run: |
