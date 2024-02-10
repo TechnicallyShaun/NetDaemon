@@ -25,18 +25,32 @@ jobs:
       run: dotnet test --no-build --verbosity normal    
     - name: Publish
       run: dotnet publish -c release
-
-  publish:
-    runs-on: ubuntu-latest
-    needs: build_and_test
-    steps:
     - name: Zip Folder
       run: |
         ls ./
-        cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
-        zip -r ./publish.zip ./*
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: ${{ steps.version.outputs.version }}
-        files: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish/publish.zip
+        ls /
+        echo ---- Tree - stuff - below -----
+        tree -d ./
+
+    # - name: Archive production artifacts
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: dist-without-markdown
+    #     path: |
+    #       dist
+    #       !dist/**/*.md
+
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   needs: build_and_test
+  #   steps:
+  #   - name: Zip Folder
+  #     run: |
+  #       ls ./
+  #       cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
+  #       zip -r ./publish.zip ./*
+  #   - name: Release
+  #     uses: softprops/action-gh-release@v1
+  #     with:
+  #       tag_name: ${{ steps.version.outputs.version }}
+  #       files: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish/publish.zip
