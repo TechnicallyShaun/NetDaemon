@@ -56,14 +56,11 @@ jobs:
         tree -d ./
         echo ---- Publish Directory Files -----
         tree ./
-
-    # - name: Zip Folder
-    #   run: |
-    #     ls ./
-    #     cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
-    #     zip -r ./publish.zip ./*
-    # - name: Release
-    #   uses: softprops/action-gh-release@v1
-    #   with:
-    #     tag_name: ${{ steps.version.outputs.version }}
-    #     files: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish/publish.zip
+    - name: Zip Publish Files
+      run: |
+        zip -r ./publish.zip ./*
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        files: ./publish.zip
