@@ -17,6 +17,9 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
+    - name: Get Next Version Number
+      id: version
+      uses: codacy/git-version@2.7.1  
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -43,9 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_test
     steps:
-    - name: Get Next Version Number
-      id: version
-      uses: codacy/git-version@2.7.1  
     - name: Download Publish Files
       uses: actions/download-artifact@v4
       with:
@@ -53,8 +53,6 @@ jobs:
     - name: Print File/Folder Tree
       run: |
         echo ---- Working Directory Folder Tree -----
-        tree -d ./
-        echo ---- Publish Directory Files -----
         tree ./
     - name: Zip Publish Files
       run: |
