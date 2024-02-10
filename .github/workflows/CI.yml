@@ -32,7 +32,7 @@ jobs:
     steps:
     - name: Zip Folder
       run: |
-        ls ~/
+        ls ./
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
         zip -r ./publish.zip ./*
     - name: Release
