@@ -8,6 +8,7 @@ on:
 
 env:
     PUBLISH_DIRECTORY: ./bin/Release/net8.0/publish
+    ARTIFACT_NAME: netdaemon-publish
 
 jobs:
   
@@ -19,39 +20,50 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.x
-    # - name: Git Version
-    #   id: version
-    #   uses: codacy/git-version@2.7.1    
+        dotnet-version: 8.0.x  
     - name: Restore dependencies
       run: dotnet restore  
     - name: Test
       run: dotnet test --no-build --verbosity normal    
     - name: Publish
       run: dotnet publish -c release
-    - name: Print File/Folder Tree
-      run: |
-        echo ---- Working Directory -----
-        tree -d ./
-        echo ---- Publish Directory -----
-        tree $PUBLISH_DIRECTORY
+    # - name: Print File/Folder Tree
+    #   run: |
+    #     echo ---- Working Directory Folder Tree -----
+    #     tree -d ./
+    #     echo ---- Publish Directory Files -----
+    #     tree $PUBLISH_DIRECTORY
     - name: Archive Build Files
       uses: actions/upload-artifact@v4
       with:
-        name: dotnet-publish-files
+        name: ${{ env.ARTIFACT_NAME }}
         path: ${{ env.PUBLISH_DIRECTORY }}
 
-  # publish:
-  #   runs-on: ubuntu-latest
-  #   needs: build_and_test
-  #   steps:
-  #   - name: Zip Folder
-  #     run: |
-  #       ls ./
-  #       cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
-  #       zip -r ./publish.zip ./*
-  #   - name: Release
-  #     uses: softprops/action-gh-release@v1
-  #     with:
-  #       tag_name: ${{ steps.version.outputs.version }}
-  #       files: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish/publish.zip
+  publish:
+    runs-on: ubuntu-latest
+    needs: build_and_test
+    steps:
+    - name: Get Next Version Number
+      id: version
+      uses: codacy/git-version@2.7.1  
+    - name: Download Publish Files
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+    - name: Print File/Folder Tree
+      run: |
+        echo ---- Working Directory Folder Tree -----
+        tree -d ./
+        echo ---- Publish Directory Files -----
+        tree $PUBLISH_DIRECTORY
+
+    # - name: Zip Folder
+    #   run: |
+    #     ls ./
+    #     cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
+    #     zip -r ./publish.zip ./*
+    # - name: Release
+    #   uses: softprops/action-gh-release@v1
+    #   with:
+    #     tag_name: ${{ steps.version.outputs.version }}
+    #     files: /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish/publish.zip
