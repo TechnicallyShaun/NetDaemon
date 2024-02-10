@@ -1,4 +1,4 @@
-name: .NET
+name: Build, Test and Deploy
 
 on:
   push:
@@ -7,35 +7,34 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  
+  build_and_test:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-
     - name: Git Version
       id: version
-      uses: codacy/git-version@2.7.1
-          
+      uses: codacy/git-version@2.7.1    
     - name: Restore dependencies
-      run: dotnet restore
-      
+      run: dotnet restore  
     - name: Test
-      run: dotnet test --no-build --verbosity normal
-      
+      run: dotnet test --no-build --verbosity normal    
     - name: Publish
-      run: dotnet publish -c release 
+      run: dotnet publish -c release
 
+  publish:
+    runs-on: ubuntu-latest
+    needs: build_and_test
+    steps:
     - name: Zip Folder
       run: |
+        ls ~/
         cd /home/runner/work/NetDaemon/NetDaemon/bin/Release/net8.0/publish
         zip -r ./publish.zip ./*
-
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
