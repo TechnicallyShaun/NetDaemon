@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Build and Test"]
+    types:
+      - completed
+
+jobs:
+  
+  test:
+    runs-on: ubuntu-latest
+    #runs-on: github-runner
+    #environment: home-netdaemon
+    steps:
+    - name: Print File/Folder Tree
+      run: |
+        echo ---- Working Directory Folder Tree -----
+        tree $PUBLISH_DIRECTORY
+
