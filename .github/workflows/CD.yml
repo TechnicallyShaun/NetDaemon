@@ -20,6 +20,7 @@ jobs:
         echo ---- Working Directory Folder Tree -----
         tree ./
     - name: Download Release
+      id: download-pub
       uses: robinraju/release-downloader@v1.9
       with:
         latest: true
@@ -29,4 +30,7 @@ jobs:
       run: |
         echo ---- Working Directory Folder Tree -----
         tree ./
+        echo ${{steps.download-pub.outputs.tag_name}}
+        echo ${{steps.download-pub.outputs.release_name}}
+        echo ${{ fromJson(steps.download-pub.outputs.downloaded_files)[0] }}
 
