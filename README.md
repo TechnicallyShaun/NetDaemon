@@ -1,7 +1,10 @@
-# Project template for binary deploy
-This is the project template for binary deploy. This allows you to build a binary package and deploy it to NetDaemon.
+# Smithy's Net Daemon Instance
+This project is my personal Net Daemon instance I use at home.
 
-This is generated using NetDaemon runtime version 3.1 and .NET 7.
+The CI/CD pipeline:
+- Builds, Tests and Publishes the dot net solution
+- Then publishes to GitHub Releases section using the CI.yml scripts
+- Then deploys to my environment using a self hosted runner and SSH using the CD.yml scripts
 
 ## Getting started
 Please see [netdaemon.xyz](https://netdaemon.xyz/docs/v3) for more information about getting starting developing apps for Home Assistant using NetDaemon.
