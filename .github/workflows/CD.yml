@@ -11,7 +11,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: netdaemon-runner
+    runs-on: self-hosted
     environment: home-local-runner
     steps:
     - name: Print File/Folder Tree
