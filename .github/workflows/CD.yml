@@ -14,14 +14,12 @@ jobs:
     runs-on: self-hosted
     environment: home-local-runner
     steps:
-
     - name: Download Release
       id: download-pub
       uses: robinraju/release-downloader@v1.9
       with:
         latest: true
         fileName:  ${{ env.FILE_NAME }}
-
     - name: Debug logs
       run: |
         echo ${{steps.download-pub.outputs.tag_name}}
@@ -31,7 +29,7 @@ jobs:
         mkdir ~/${{steps.download-pub.outputs.tag_name}}
         mv -f ./${{ env.FILE_NAME }} ~/${{steps.download-pub.outputs.tag_name}}/  
 
-        echo "Copy the published artifact to server"
+        echo "Copying the published artifact to server"
         scp ~/${{steps.download-pub.outputs.tag_name}}/${{ env.FILE_NAME }} ${{secrets.AUTOMATION_SERVER_CONN}}:/docker/appdata/netdaemon 
         
         echo "Unpacking and reloading netdaemon"
