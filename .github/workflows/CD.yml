@@ -7,7 +7,7 @@ on:
       - completed
 
 env:
-  ARTIFACT_NAME: netdaemon-publish
+  FILE_NAME: publish.zip
 
 jobs:
   test:
@@ -18,9 +18,15 @@ jobs:
     - name: Print File/Folder Tree
       run: |
         echo ---- Working Directory Folder Tree -----
-        tree $PUBLISH_DIRECTORY
-    - name: Download Publish Files
-      uses: actions/download-artifact@v4
+        tree ./
+    - name: Download Release
+      uses: robinraju/release-downloader@v1.9
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        latest: true
+        fileName:  ${{ env.FILE_NAME }}
+
+    - name: Debug logs
+      run: |
+        echo ---- Working Directory Folder Tree -----
+        tree ./
 
