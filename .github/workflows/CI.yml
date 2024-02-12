@@ -9,6 +9,7 @@ on:
 env:
     PUBLISH_DIRECTORY: ./bin/Release/net8.0/publish
     ARTIFACT_NAME: netdaemon-publish
+    PUBLISH_FILENAME: publish.zip
 
 jobs:
   
@@ -58,9 +59,9 @@ jobs:
     #     tree ./
     - name: Zip Publish Files
       run: |
-        zip -r ./publish.zip ./*
-    - name: Release
+        zip -r ./${{ env.PUBLISH_FILENAME }} ./*
+    - name: Upload to GitHub Releases
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ steps.version.outputs.version }}
-        files: ./publish.zip
+        files: ./${{ env.PUBLISH_FILENAME }}

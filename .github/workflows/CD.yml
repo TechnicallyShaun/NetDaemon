@@ -10,10 +10,9 @@ env:
   FILE_NAME: publish.zip
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    #runs-on: github-runner
-    #environment: home-netdaemon
+  deploy:
+    runs-on: netdaemon-runner
+    environment: home-local-runner
     steps:
     - name: Print File/Folder Tree
       run: |
@@ -31,6 +30,15 @@ jobs:
         echo ---- Working Directory Folder Tree -----
         tree ./
         echo ${{steps.download-pub.outputs.tag_name}}
-        echo ${{steps.download-pub.outputs.release_name}}
         echo ${{ fromJson(steps.download-pub.outputs.downloaded_files)[0] }}
 
+        echo "Building file directory"
+        mkdir ~/${{steps.download-pub.outputs.tag_name}}
+        mv -f ./${{ env.FILE_NAME }} ~/${{steps.download-pub.outputs.tag_name}}/  
+
+        echo "Copy the published artifact to server"
+        scp ~/${{steps.download-pub.outputs.tag_name}}/${{ env.FILE_NAME }} ${{secrets.AUTOMATION_SERVER_CONN}}:/docker/appdata/netdaemon 
+        
+        echo "Unpacking and reloading netdaemon"
+        ssh -t ${{secrets.AUTOMATION_SERVER_CONN}} unzip -o /docker/appdata/netdaemon/${{ env.FILE_NAME }}
+        ssh -t ${{secrets.AUTOMATION_SERVER_CONN}} docker restart netdaemon4
