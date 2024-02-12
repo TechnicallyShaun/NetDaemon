@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy via Self Hosted Runner
 
 on:
   workflow_run:
@@ -6,8 +6,10 @@ on:
     types:
       - completed
 
+env:
+  ARTIFACT_NAME: netdaemon-publish
+
 jobs:
-  
   test:
     runs-on: ubuntu-latest
     #runs-on: github-runner
@@ -17,4 +19,8 @@ jobs:
       run: |
         echo ---- Working Directory Folder Tree -----
         tree $PUBLISH_DIRECTORY
+    - name: Download Publish Files
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
 
