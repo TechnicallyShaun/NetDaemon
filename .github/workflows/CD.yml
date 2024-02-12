@@ -14,10 +14,7 @@ jobs:
     runs-on: self-hosted
     environment: home-local-runner
     steps:
-    - name: Print File/Folder Tree
-      run: |
-        echo ---- Working Directory Folder Tree -----
-        tree ./
+
     - name: Download Release
       id: download-pub
       uses: robinraju/release-downloader@v1.9
@@ -27,8 +24,6 @@ jobs:
 
     - name: Debug logs
       run: |
-        echo ---- Working Directory Folder Tree -----
-        tree ./
         echo ${{steps.download-pub.outputs.tag_name}}
         echo ${{ fromJson(steps.download-pub.outputs.downloaded_files)[0] }}
 
