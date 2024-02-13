@@ -4,5 +4,6 @@ appsettings.Development.json
 .vs
 *.gen
 .idea
+.backup
 #appsettings.json
 #HomeAssistantGenerated.cs
