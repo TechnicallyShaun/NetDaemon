@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-    PUBLISH_DIRECTORY: ./bin/Release/net8.0/publish
+    PUBLISH_DIRECTORY: ./NetDaemonApps/bin/Release/net8.0/publish/
     ARTIFACT_NAME: netdaemon-publish
     PUBLISH_FILENAME: publish.zip
 
