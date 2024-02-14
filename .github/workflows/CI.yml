@@ -25,7 +25,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore  
     - name: Test
-      run: dotnet test --no-build --verbosity normal    
+      run: dotnet test --verbosity normal    
     - name: Publish
       run: dotnet publish -c release
     # - name: Print File/Folder Tree
