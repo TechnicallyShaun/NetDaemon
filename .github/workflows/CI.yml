@@ -37,7 +37,7 @@ jobs:
       run: |
         zip -r ./${{ env.PUBLISH_FILENAME }} ./*
     - name: Upload to GitHub Releases
-      uses: softprops/action-gh-release@v
+      uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ steps.version.outputs.version }}
         files: ./${{ env.PUBLISH_FILENAME }}
