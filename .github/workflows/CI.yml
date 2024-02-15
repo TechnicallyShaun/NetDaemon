@@ -35,7 +35,6 @@ jobs:
         release-branch: main
     - name: Zip Publish Files
       run: |
-        gh release create ${{ steps.version.outputs.version }}
         zip -r ./${{ env.PUBLISH_FILENAME }} ./*
     - name: Upload to GitHub Releases
       uses: softprops/action-gh-release@v
