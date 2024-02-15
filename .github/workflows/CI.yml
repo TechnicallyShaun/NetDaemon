@@ -9,6 +9,7 @@ on:
 env:
     PUBLISH_DIRECTORY: ./NetDaemonApps/bin/Release/net8.0/publish
     ARTIFACT_NAME: netdaemon-publish
+    PUBLISH_NAME: netdaemon-deploy
     PUBLISH_FILENAME: publish.zip
 
 jobs:
@@ -65,7 +66,7 @@ jobs:
     - name: Archive Build Files
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        name: ${{ env.PUBLISH_NAME }}
         path: ./${{ env.PUBLISH_FILENAME }}
     # - name: Upload to GitHub Releases
     #   uses: softprops/action-gh-release@v1
