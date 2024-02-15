@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x  
     - name: Restore dependencies
@@ -45,7 +45,7 @@ jobs:
     needs: build_and_test
     steps:    
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Get Next Version Number
       id: version
       uses: codacy/git-version@2.7.1
