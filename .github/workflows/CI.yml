@@ -54,5 +54,5 @@ jobs:
     - name: Upload to GitHub Releases
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ steps.version.outputs.version }}
+        tag_name: ${{ steps.version.outputs.version_tag }}
         files: ./${{ env.PUBLISH_FILENAME }}
