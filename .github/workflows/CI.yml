@@ -47,7 +47,7 @@ jobs:
         path: ./
     - name: Zip Publish Files
       run: |
-        zip -r ./${{ env.PUBLISH_FILENAME }} ${{ env.PUBLISH_DIRECTORY }}/*
+        zip -rj ./${{ env.PUBLISH_FILENAME }} ${{ env.PUBLISH_DIRECTORY }}/*
     - name: Upload to GitHub Releases
       uses: softprops/action-gh-release@v1
       with:
