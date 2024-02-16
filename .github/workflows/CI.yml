@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
     - name: Get Next Version Number
       id: version
       uses: codacy/git-version@2.7.1
       with:
         release-branch: main
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x  
     - name: Restore dependencies
@@ -41,7 +41,7 @@ jobs:
         echo ---- Publish Directory Files -----
         tree $PUBLISH_DIRECTORY
     - name: Archive Build Files
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./
