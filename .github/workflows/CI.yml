@@ -63,13 +63,13 @@ jobs:
     - name: Zip Publish Files
       run: |
         zip -r ./${{ env.PUBLISH_FILENAME }} ./*
-    - name: Archive Build Files
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ env.PUBLISH_NAME }}
-        path: ./${{ env.PUBLISH_FILENAME }}
-    # - name: Upload to GitHub Releases
-    #   uses: softprops/action-gh-release@v1
+    # - name: Archive Build Files
+    #   uses: actions/upload-artifact@v4
     #   with:
-    #     tag_name: ${{ steps.version.outputs.version }}
-    #     files: ./${{ env.PUBLISH_FILENAME }}
+    #     name: ${{ env.PUBLISH_NAME }}
+    #     path: ./${{ env.PUBLISH_FILENAME }}
+    - name: Upload to GitHub Releases
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        files: ./${{ env.PUBLISH_FILENAME }}
