@@ -12,11 +12,5 @@ namespace NetDaemonApps.Test
         {
             Assert.Pass();
         }
-
-        [Test]
-        public void Test2()
-        {
-            Assert.Pass();
-        }
     }
 }
