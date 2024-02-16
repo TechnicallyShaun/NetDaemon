@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build Test Publish
 
 on:
   push:
@@ -40,9 +40,14 @@ jobs:
         tree -d ./
         echo ---- Publish Directory Files -----
         tree $PUBLISH_DIRECTORY
+    - name: Archive Build Files
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+        path: ./
     - name: Zip Publish Files
       run: |
-        zip -r ./${{ env.PUBLISH_FILENAME }} ./*
+        zip -r ./${{ env.PUBLISH_FILENAME }} ${{ env.PUBLISH_DIRECTORY }}/*
     # - name: Upload to GitHub Releases
     #   uses: softprops/action-gh-release@v1
     #   with:

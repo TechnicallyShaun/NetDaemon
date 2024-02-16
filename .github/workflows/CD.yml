@@ -2,7 +2,7 @@ name: Deploy via Self Hosted Runner
 
 on:
   workflow_run:
-    workflows: ["Build and Test"]
+    workflows: ["Build Test Publish"]
     types:
       - completed
 
