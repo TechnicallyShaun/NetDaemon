@@ -33,16 +33,7 @@ jobs:
     - name: Test
       run: dotnet test --verbosity normal    
     - name: Publish
-      run: dotnet publish -c release
-    - name: Print File/Folder Tree
-      run: |
-        echo ---- Versioning -----
-        echo version ${{ steps.version.outputs.version }}
-        echo version tag ${{ steps.version.outputs.version_tag }}
-        echo ---- Working Directory Folder Tree -----
-        tree -d ./
-        echo ---- Publish Directory Files -----
-        tree $PUBLISH_DIRECTORY     
+      run: dotnet publish -c release 
     - name: Archive Build Files
       uses: actions/upload-artifact@v3
       with:
@@ -52,6 +43,14 @@ jobs:
       run: |
         cd ${{ env.PUBLISH_DIRECTORY }}
         zip -r ~/${{ env.PUBLISH_FILENAME }} ./*
+    - name: Print File/Folder Tree
+      run: |
+        echo ---- Versioning -----
+        echo version ${{ steps.version.outputs.version_tag }}
+        echo ---- Working Directory Folder Tree -----
+        tree ./
+        echo ---- Home Directory Folder Tree -----
+        tree ~/
     - name: Upload to GitHub Releases
       uses: softprops/action-gh-release@v1
       with:
