@@ -27,7 +27,6 @@ jobs:
         echo ${{ fromJson(steps.download-pub.outputs.downloaded_files)[0] }}
 
         echo "Building file directory"
-        rm -rf ~/${{steps.download-pub.outputs.tag_name}}
         mkdir ~/${{steps.download-pub.outputs.tag_name}}
         mv -f ./${{ env.FILE_NAME }} ~/${{steps.download-pub.outputs.tag_name}}/  
 
