@@ -11,6 +11,6 @@ public class HelloWorldApp
 {
     public HelloWorldApp(IHaContext ha)
     {
-        ha.CallService("notify", "persistent_notification", null, new { message = "Notify me", title = "Hello world! asdf" });
+        ha.CallService("notify", "persistent_notification", null, new { message = "Notify me", title = "Hello world!" });
     }
 }
