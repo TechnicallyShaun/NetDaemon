@@ -18,7 +18,7 @@ public class SchedulingApp
             // Make sure we do not flood the notifications :)
             if (count++ < 3)
                 ha.CallService("notify", "persistent_notification",
-                    data: new {message = "This is a scheduled action!", title = "Schedule!"});
+                    data: new {message = "This is a scheduled action!", title = "Hello Schedule!"});
         });
     }
 }
