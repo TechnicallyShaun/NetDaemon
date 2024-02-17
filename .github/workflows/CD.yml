@@ -36,3 +36,7 @@ jobs:
         echo "Copying the published artifact to server"
         scp -r ~/${{steps.download-pub.outputs.tag_name}}/extracted/* ${{secrets.AUTOMATION_SERVER_CONN}}:/docker/appdata/netdaemon 
 
+        
+        echo "Restart netdaemon"
+        ssh -t ${{secrets.AUTOMATION_SERVER_CONN}} docker restart netdaemon4
+
