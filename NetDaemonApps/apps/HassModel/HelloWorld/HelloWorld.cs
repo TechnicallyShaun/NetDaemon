@@ -9,17 +9,8 @@ namespace HassModel;
 [NetDaemonApp]
 public class HelloWorldApp
 {
-    public HelloWorldApp(IHaContext ha, ITestThis tt)
+    public HelloWorldApp(IHaContext ha)
     {
-        ha.CallService("notify", "persistent_notification", null, new { message = "Notify me", title = "Hello world!" });
-
-        tt.Heya("Hi!");
-        tt.Heya2(new { test = "Hi!", other = "test" });
+        ha.CallService("notify", "persistent_notification", null, new { message = "Notify me", title = "Hello world! asdf" });
     }
-}
-
-public interface ITestThis
-{
-    public void Heya(string message);
-    public void Heya2(object message);
 }
