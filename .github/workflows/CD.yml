@@ -31,7 +31,7 @@ jobs:
         mv -f ./${{ env.FILE_NAME }} ~/${{steps.download-pub.outputs.tag_name}}/
         
         echo "Unpacking"
-        unzip  ~/${{steps.download-pub.outputs.tag_name}}/${{ env.FILE_NAME }} ~/${{steps.download-pub.outputs.tag_name}}/extracted
+        unzip  ~/${{steps.download-pub.outputs.tag_name}}/${{ env.FILE_NAME }} -d ~/${{steps.download-pub.outputs.tag_name}}/extracted
 
         echo "Copying the published artifact to server"
         scp -r ~/${{steps.download-pub.outputs.tag_name}}/extracted/* ${{secrets.AUTOMATION_SERVER_CONN}}:/docker/appdata/netdaemon 
