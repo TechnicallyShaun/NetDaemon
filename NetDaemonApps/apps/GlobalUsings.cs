@@ -1,4 +1,4 @@
-// Common usings for NetDaemon apps
+// Common usings for NetDaemon Apps
 global using System;
 global using System.Reactive.Linq;
 global using Microsoft.Extensions.Logging;

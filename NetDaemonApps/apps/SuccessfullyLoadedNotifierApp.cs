@@ -1,4 +1,4 @@
-﻿namespace NetDaemonApps.apps;
+﻿namespace NetDaemonApps.Apps;
 
 [NetDaemonApp]
 public class SuccessfullyLoadedNotifierApp
