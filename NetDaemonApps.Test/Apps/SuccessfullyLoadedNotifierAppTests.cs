@@ -9,9 +9,9 @@ public class SuccessfullyLoadedNotifierAppTests : AppTestsBase<SuccessfullyLoade
     public void Init_CallsNotify()
     {
         //Arrange
-        var mock = FakeHass();
+        var hass = MockHass();
         var expected = StubNotify();
-        mock.Setup(h =>
+        hass.Setup(h =>
                 h.CallService(
                     HaNotify.Domain, HaNotify.Service,
                     It.IsAny<ServiceTarget>(),
@@ -19,10 +19,10 @@ public class SuccessfullyLoadedNotifierAppTests : AppTestsBase<SuccessfullyLoade
             .Verifiable(Times.Once());
 
         //Act
-        var helloWorld = new SuccessfullyLoadedNotifierApp(mock.Object);
+        var helloWorld = new SuccessfullyLoadedNotifierApp(hass.Object);
 
         //Assert
-        mock.VerifyAll();
+        hass.VerifyAll();
     }
 
     private Expression<Func<HaNotify, bool>> TheSameAs(HaNotify expected) =>
@@ -38,5 +38,4 @@ public class SuccessfullyLoadedNotifierAppTests : AppTestsBase<SuccessfullyLoade
         IsMatch(StubNotify(), StubNotify());
 
     private static HaNotify StubNotify() => new(SuccessfullyLoadedNotifierApp.Title, SuccessfullyLoadedNotifierApp.Message);
-    protected override SuccessfullyLoadedNotifierApp CreateSUT(IHaContext hass) => new(hass);
 }
