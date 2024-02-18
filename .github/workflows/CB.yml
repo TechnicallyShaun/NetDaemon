@@ -2,12 +2,11 @@ name: Continuous Build and Test
 
 on:
   push:
-    branches:    
-      - '*'
-      - '!main'
+    branches-ignore:
+      - 'main'
 
 jobs:
-  build_and_test:
+  test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
