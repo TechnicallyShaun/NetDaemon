@@ -2,9 +2,8 @@ name: Continuous Build and Test
 
 on:
   push:
-    branches:    
-      - '*'
-      - '!main'
+    branches-ignore:
+      - 'main'
 
 jobs:
   build_and_test:
