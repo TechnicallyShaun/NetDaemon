@@ -1,0 +1,22 @@
+name: Continuous Build and Test
+
+on:
+  push:
+    branches:    
+      - '*'
+      - '!main'
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Test
+      run: dotnet test --verbosity normal
