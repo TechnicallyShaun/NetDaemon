@@ -17,8 +17,6 @@ try
                 .AddAppsFromAssembly(Assembly.GetExecutingAssembly())
                 .AddNetDaemonStateManager()
                 .AddNetDaemonScheduler()
-                // Add next line if using code generator
-                // .AddHomeAssistantGenerated()
         )
         .Build()
         .RunAsync()

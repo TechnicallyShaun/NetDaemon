@@ -5,4 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Home Assistant member properties are lowercase and case sensetive.", Scope = "namespaceanddescendants", Target = "~N:NetDaemonApps.apps")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Home Assistant member properties are lowercase and case sensetive.", Scope = "namespaceanddescendants", Target = "~N:NetDaemonApps.Apps")]
