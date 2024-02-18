@@ -1,4 +1,6 @@
-﻿namespace NetDaemonApps.Test.Apps;
+﻿using NetDaemonApps.Dtos;
+
+namespace NetDaemonApps.Test.Apps;
 
 public class SuccessfullyLoadedNotifierAppTests
 {
