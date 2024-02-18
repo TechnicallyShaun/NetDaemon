@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12F5717A-C092-4B89-A243-14648C3DC934}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\workflows\CB.yml = .github\workflows\CB.yml
 		.github\workflows\CD.yml = .github\workflows\CD.yml
 		.github\workflows\CI.yml = .github\workflows\CI.yml
 	EndProjectSection
