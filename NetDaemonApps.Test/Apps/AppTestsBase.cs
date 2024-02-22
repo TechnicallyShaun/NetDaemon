@@ -15,15 +15,8 @@ public abstract class AppTestsBase<T>
     }
 
     /// <summary>
-    /// Create a new Instance of the App/System Under Test (SUT)
-    /// </summary>
-    /// <param name="hass"></param>
-    /// <returns></returns>
-    protected abstract T CreateSUT(IHaContext hass);
-
-    /// <summary>
     /// Create a Fake HaContext Instance
     /// </summary>
     /// <returns></returns>
-    protected Mock<IHaContext> FakeHass() => new();
+    protected Mock<IHaContext> MockHass() => new();
 }
