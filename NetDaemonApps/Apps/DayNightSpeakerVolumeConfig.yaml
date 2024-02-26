@@ -1,0 +1,5 @@
+﻿DayNightSpeakerVolume:
+    DayStart: 7
+    DayVolume: 0.9
+    NightStart: 21
+    NightVolume: 0.3
