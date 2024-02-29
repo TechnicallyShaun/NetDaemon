@@ -1,4 +1,4 @@
-﻿using NetDaemon.AppModel;
+﻿using Microsoft.Reactive.Testing;
 
 namespace NetDaemonApps.Test.Apps;
 
@@ -30,21 +30,31 @@ public class DayNightSpeakerVolumeTests : AppTestsBase<DayNightSpeakerVolumeApp>
     //  - Night event is set
     //  - Volume Set is called (with correct volume level, for day and night)
 
+    [Test]
+    public void Init_Schedules_AreSetCorrectly()
+    {
+        var ha = MockHass();
+        var stubConfig = CreateConfig();
+
+        var testScheduler = new TestScheduler();
+        testScheduler.AdvanceTo(new DateTime(2020, 2, 1, 23, 44, 0).ToUniversalTime().Ticks);
+
+        var app = new DayNightSpeakerVolumeApp(ha.Object, testScheduler, stubConfig);
+    }
+
 
     [Test]
     public void TestCron()
     {
-        var haContextMoq = new Mock<IHaContext>();
-        var fakeConfig = CreateConfig();
+        var ha = new Mock<IHaContext>();
+        var stubConfig = CreateConfig();
 
-        var testScheduler = new Microsoft.Reactive.Testing.TestScheduler();
+        var testScheduler = new TestScheduler();
         testScheduler.AdvanceTo(new DateTime(2020, 2, 1, 23, 44, 0).ToUniversalTime().Ticks);
 
-        var app = new DayNightSpeakerVolumeApp(haContextMoq.Object, testScheduler, fakeConfig);
+        var app = new DayNightSpeakerVolumeApp(ha.Object, testScheduler, stubConfig);
 
-        haContextMoq.VerifyNoOtherCalls();
+        ha.VerifyNoOtherCalls();
         testScheduler.AdvanceBy(TimeSpan.FromMinutes(1).Ticks);
-
-
     }
 }

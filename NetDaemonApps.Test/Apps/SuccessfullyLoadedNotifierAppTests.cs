@@ -25,7 +25,9 @@ public class SuccessfullyLoadedNotifierAppTests : AppTestsBase<SuccessfullyLoade
         hass.VerifyAll();
     }
 
-    private Expression<Func<HaNotify, bool>> TheSameAs(HaNotify expected) =>
+    #region DTO/Model Tests
+
+    private static Expression<Func<HaNotify, bool>> TheSameAs(HaNotify expected) =>
         x => IsMatch(x, expected);
     private static bool IsMatch(HaNotify a, HaNotify b)
         => a.title == b.title && a.message == b.message;
@@ -34,8 +36,10 @@ public class SuccessfullyLoadedNotifierAppTests : AppTestsBase<SuccessfullyLoade
     /// Ensure the matching method works correctly
     /// </summary>
     [Test]
-    public void Matching_Notify_HappyPath() =>
+    public void NotifyModel_Matches() =>
         IsMatch(StubNotify(), StubNotify());
 
     private static HaNotify StubNotify() => new(SuccessfullyLoadedNotifierApp.Title, SuccessfullyLoadedNotifierApp.Message);
+
+    #endregion
 }
