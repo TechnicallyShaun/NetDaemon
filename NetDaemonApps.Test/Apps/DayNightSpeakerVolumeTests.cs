@@ -12,14 +12,14 @@ public class DayNightSpeakerVolumeTests : AppTestsBase<DayNightSpeakerVolumeApp>
     // POSSIBLE DAY OF WEEK / RANGE
     // ENFORCE MODE (where if volume is changed, it is corrected)
 
-    private IAppConfig<DayNightSpeakerVolume> CreateConfig()
+    private IAppConfig<DayNightSpeakerVolumeConfig> CreateConfig()
     {
-        var config = Mock.Of<IAppConfig<DayNightSpeakerVolume>>();
+        var config = Mock.Of<IAppConfig<DayNightSpeakerVolumeConfig>>();
 
-        config.Value.DayStart = "7.30";
+        config.Value.DayStart = new TimeSpan(7, 0, 0);
         config.Value.DayVolume = 9;
 
-        config.Value.NightStart = "19.30";
+        config.Value.NightStart = new TimeSpan(19, 0, 0);
         config.Value.NightVolume = 3;
 
         return config;

@@ -1,5 +1,5 @@
-﻿DayNightSpeakerVolume:
-    DayStart: 7
+﻿NetDaemonApps.Apps.DayNightSpeakerVolumeConfig:
+    DayStart: 7:30
     DayVolume: 0.9
-    NightStart: 21
+    NightStart: 21:00
     NightVolume: 0.3

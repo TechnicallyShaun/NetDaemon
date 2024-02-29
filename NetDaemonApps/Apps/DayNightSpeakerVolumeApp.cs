@@ -10,13 +10,13 @@ namespace NetDaemonApps.Apps;
 [NetDaemonApp]
 public class DayNightSpeakerVolumeApp
 {
-    private DayNightSpeakerVolume config;
+    private DayNightSpeakerVolumeConfig config;
 
-    public DayNightSpeakerVolumeApp(IHaContext ha, IScheduler scheduler, IAppConfig<DayNightSpeakerVolume> config)
+    public DayNightSpeakerVolumeApp(IHaContext ha, IScheduler scheduler, IAppConfig<DayNightSpeakerVolumeConfig> appConfig)
     {
-        this.config = config.Value;
+        this.config = appConfig.Value;
 
-        scheduler.ScheduleCron("0 7 * * *", () => {
+        scheduler.ScheduleCron($"0 7 * * *", () => {
             ha.Entity("media_player.living_room_speaker").CallService("media_player.volume_set", new { volume_level = 0.9 });
         });
 
@@ -26,10 +26,10 @@ public class DayNightSpeakerVolumeApp
 
     }
 }
-public class DayNightSpeakerVolume
+public class DayNightSpeakerVolumeConfig
 {
-    public string? DayStart { get; set; }
-    public decimal? DayVolume { get; set; }
-    public string? NightStart { get; set; }
-    public decimal? NightVolume { get; set; }
+    public TimeSpan DayStart { get; set; }
+    public decimal DayVolume { get; set; }
+    public TimeSpan NightStart { get; set; }
+    public decimal NightVolume { get; set; }
 }
