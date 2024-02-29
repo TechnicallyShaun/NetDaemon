@@ -1,5 +1,4 @@
 ﻿using NetDaemonApps.Dtos;
-using System.Linq.Expressions;
 
 namespace NetDaemonApps.Test.Apps;
 
@@ -15,7 +14,7 @@ public class SuccessfullyLoadedNotifierAppTests : AppTestsBase<SuccessfullyLoade
                 h.CallService(
                     HaNotify.Domain, HaNotify.Service,
                     It.IsAny<ServiceTarget>(),
-                    It.Is(TheSameAs(expected))))
+                    It.Is<HaNotify>(x => expected.Equals(x))))
             .Verifiable(Times.Once());
 
         //Act
@@ -25,21 +24,7 @@ public class SuccessfullyLoadedNotifierAppTests : AppTestsBase<SuccessfullyLoade
         hass.VerifyAll();
     }
 
-    #region DTO/Model Tests
+    public static HaNotify StubNotify() =>
+     new(SuccessfullyLoadedNotifierApp.Title, SuccessfullyLoadedNotifierApp.Message);
 
-    private static Expression<Func<HaNotify, bool>> TheSameAs(HaNotify expected) =>
-        x => IsMatch(x, expected);
-    private static bool IsMatch(HaNotify a, HaNotify b)
-        => a.title == b.title && a.message == b.message;
-
-    /// <summary>
-    /// Ensure the matching method works correctly
-    /// </summary>
-    [Test]
-    public void NotifyModel_Matches() =>
-        IsMatch(StubNotify(), StubNotify());
-
-    private static HaNotify StubNotify() => new(SuccessfullyLoadedNotifierApp.Title, SuccessfullyLoadedNotifierApp.Message);
-
-    #endregion
 }

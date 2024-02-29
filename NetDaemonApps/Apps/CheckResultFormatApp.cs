@@ -8,7 +8,7 @@ namespace NetDaemonApps.Apps;
 [NetDaemonApp]
 public class CheckResultFormatApp
 {
-    public CheckResultFormatApp(ILogger<CheckResultFormatApp> logger, ITriggerManager triggerManager, IHomeAssistantRunner runner)
+    public CheckResultFormatApp(ILogger<CheckResultFormatApp> logger, IHomeAssistantRunner runner)
     {
         // This interface in the client project will allow subscribe to all raw Home Assistant websocket messages.
         var haMessages = (IHomeAssistantHassMessages)runner.CurrentConnection!;
